@@ -1,0 +1,26 @@
+---
+
+- name: Deploy webserver
+  hosts: servers
+  become: yes
+  tasks:
+    - name: Update repositories cache and install nginx
+      apt:
+        name: nginx
+        update_cache: yes
+    - name: Remove /var/www/html directory
+      file:
+        path: "/var/www/html"
+        state: absent
+    - name: Recreate /var/www/html directory
+      file:
+        path: "/var/www/html"
+        state: directory
+    - name: Create index file
+      file: 
+        path: "/var/www/html/index.html"
+        state: touch
+    - name: Put "Olá Mundo" in index.html
+      shell: echo "<h1>Olá Mundo</h1><br>" >> /var/www/html/index.html
+    - name: Put public ip in index.html
+      shell: curl http://169.254.169.254/latest/meta-data/public-ipv4 >> /var/www/html/index.html
