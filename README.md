@@ -1,6 +1,6 @@
 # Deploy de instâncias EC2 utilizando Terraform e Ansible
 
-Neste projeto, estamos criando uma instância com um servidor web executando um site estático.
+Neste projeto, estamos criando uma instância com um servidor web executando um site estático através do IP publico da EC2 na porta 80.
 
 ## Compilação
 
